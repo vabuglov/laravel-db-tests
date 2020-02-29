@@ -67,11 +67,8 @@ class TourController extends Controller
 
     public function store(Request $request)
     {
-        if (isset($request->id)) {
-            $tour = Tour::findOrFail($request->id);
-        } else {
-            $tour = new Tour;
-        }
+        $tour = $request->isMethod('put') ? Tour::findOrFail($request->id)
+        : new Tour;
 
         $tour->id = $request->input('id');
         $tour->name = $request->input('name');

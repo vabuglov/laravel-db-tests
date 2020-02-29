@@ -26,7 +26,7 @@ export default {
     deleteRoute(id) {
       if (confirm("Вы точно хотите удалить точку?")) {
         fetch(`/api/route/` + id, {
-          method: "post"
+          method: "delete"
         })
           .then(res => res.json())
           .then(data => {

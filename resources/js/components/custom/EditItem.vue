@@ -56,7 +56,7 @@ export default {
     },
     async updateItem() {
       await fetch(this.urlupdate, {
-        method: "post",
+        method: "put",
         body: JSON.stringify(this.item),
         headers: {
           "Content-Type": "application/json"

@@ -42,6 +42,7 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
+          console.log(`Группа создана`);
           this.fetchData();
         })
         .catch(err => console.log(err));

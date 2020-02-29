@@ -71,10 +71,12 @@ export default {
   },
   methods: {
     async getRouts() {
+      console.log("Front id :" + this.id);
       await fetch(`/api/route_group/show_connected/` + this.id)
         .then(res => res.json())
         .then(res => {
           this.routes = res;
+          console.log("Take data :" + res);
         })
         .catch(err => console.log(err));
     },
@@ -84,7 +86,7 @@ export default {
     async route_group_delete() {
       if (confirm("Вы точно хотите удалить?")) {
         fetch(`/api/route_group/` + this.id, {
-          method: "post"
+          method: "delete"
         })
           .then(res => res.json())
           .then(data => {

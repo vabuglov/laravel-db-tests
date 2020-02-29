@@ -9,10 +9,10 @@
           </div>
           <div class="review_data_stars">
             <div v-bind:key="random(item)" v-for="item in stars">
-              <img src="../../../../public/storage/images/StarGreen.svg" alt="GreenStars" />
+              <img src="../../../../public/images/StarGreen.svg" alt="GreenStars" />
             </div>
             <div v-bind:key="random(item)" v-for="item in 5 - stars">
-              <img src="../../../../public/storage/images/StarGray.svg" alt="GrayStars" />
+              <img src="../../../../public/images/StarGray.svg" alt="GrayStars" />
             </div>
           </div>
         </div>
@@ -28,12 +28,12 @@
       <div class="category_card_functions">
         <div class="category_card_functions-circle" @click.prevent="toggleEdit">
           <figure>
-            <img src="../../../../public/storage/images/pen.svg" alt />
+            <img src="../../../../public/images/pen.svg" alt />
           </figure>
         </div>
         <div class="category_card_functions-circle" @click.prevent="delete_review">
           <figure>
-            <img src="../../../../public/storage/images/trash.svg" alt />
+            <img src="../../../../public/images/trash.svg" alt />
           </figure>
         </div>
       </div>
@@ -61,12 +61,12 @@
       <div class="category_card_functions">
         <div class="category_card_functions-circle" @click.prevent="update_review">
           <figure>
-            <img src="../../../../public/storage/images/save.svg" alt />
+            <img src="../../../../public/images/save.svg" alt />
           </figure>
         </div>
         <div class="category_card_functions-circle" @click.prevent="toggleEdit">
           <figure>
-            <img src="../../../../public/storage/images/close.svg" alt />
+            <img src="../../../../public/images/close.svg" alt />
           </figure>
         </div>
       </div>
@@ -141,7 +141,7 @@ export default {
         this.item.rating < 6
       ) {
         await fetch(`/api/review/`, {
-          method: "post",
+          method: "put",
           body: JSON.stringify(this.item),
           headers: {
             "Content-Type": "application/json"
@@ -159,7 +159,7 @@ export default {
     async delete_review() {
       if (confirm("Вы точно хотите удалить отзыв?")) {
         await fetch(`/api/review/${this.id}`, {
-          method: "post"
+          method: "delete"
         })
           .then(res => res.json())
           .then(data => {

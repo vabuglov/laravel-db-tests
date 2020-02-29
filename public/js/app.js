@@ -2269,7 +2269,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите спрятать?")) {
         fetch("/api/".concat(this.path.slice(0, -1), "/").concat(id), {
-          method: "post"
+          method: "delete"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -2286,7 +2286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите удалить?")) {
         fetch("/api/".concat(this.path.slice(0, -1), "/delete/").concat(id), {
-          method: "post"
+          method: "delete"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -2303,7 +2303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите удалить точку?")) {
         fetch("/api/route/" + id, {
-          method: "post"
+          method: "delete"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -2499,7 +2499,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите восстановить?")) {
         fetch("/api/driver/restore/".concat(id), {
-          method: "post"
+          method: "put"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -3623,7 +3623,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return fetch(this.urlupdate, {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -3713,6 +3713,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
+        console.log("\u0413\u0440\u0443\u043F\u043F\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0430");
+
         _this.fetchData();
       })["catch"](function (err) {
         return console.log(err);
@@ -3916,7 +3918,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return fetch("/api/notices/updateitem", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(this.orderdData),
                   headers: {
                     "Content-Type": "application/json"
@@ -3960,7 +3962,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.next = 2;
                 return fetch("/api/notices/deleteitem", {
-                  method: "post",
+                  method: "delete",
                   body: JSON.stringify(this.orderdData),
                   headers: {
                     "Content-Type": "application/json"
@@ -4245,7 +4247,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
 
                 _context3.next = 4;
                 return fetch("/api/review/", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4293,7 +4295,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
 
                 _context4.next = 3;
                 return fetch("/api/review/".concat(this.id), {
-                  method: "post"
+                  method: "delete"
                 }).then(function (res) {
                   return res.json();
                 }).then(function (data) {
@@ -4453,16 +4455,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                console.log("Front id :" + this.id);
+                _context2.next = 3;
                 return fetch("/api/route_group/show_connected/" + this.id).then(function (res) {
                   return res.json();
                 }).then(function (res) {
                   _this.routes = res;
+                  console.log("Take data :" + res);
                 })["catch"](function (err) {
                   return console.log(err);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -4491,7 +4495,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 if (confirm("Вы точно хотите удалить?")) {
                   fetch("/api/route_group/" + this.id, {
-                    method: "post"
+                    method: "delete"
                   }).then(function (res) {
                     return res.json();
                   }).then(function (data) {
@@ -4610,7 +4614,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (confirm("Вы точно хотите удалить точку?")) {
         fetch("/api/route/" + id, {
-          method: "post"
+          method: "delete"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -4717,19 +4721,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log(this.purpose);
+
                 if (!(this.purpose == "routegroups")) {
-                  _context2.next = 4;
+                  _context2.next = 5;
                   break;
                 }
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 4;
+                  _context2.next = 5;
                   break;
                 }
 
-                _context2.next = 4;
+                _context2.next = 5;
                 return fetch("/api/disconnect", {
-                  method: "post",
+                  method: "delete",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4744,20 +4750,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 4:
+              case 5:
                 if (!(this.purpose == "driverrouts")) {
-                  _context2.next = 8;
+                  _context2.next = 9;
                   break;
                 }
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 8;
+                  _context2.next = 9;
                   break;
                 }
 
-                _context2.next = 8;
+                _context2.next = 9;
                 return fetch("/api/driver/rg/disconnect", {
-                  method: "post",
+                  method: "delete",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4772,9 +4778,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 8:
+              case 9:
                 if (!(this.purpose == "tourroutes")) {
-                  _context2.next = 13;
+                  _context2.next = 14;
                   break;
                 }
 
@@ -4784,13 +4790,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 13;
+                  _context2.next = 14;
                   break;
                 }
 
-                _context2.next = 13;
+                _context2.next = 14;
                 return fetch("/api/tour/disconnect/route", {
-                  method: "post",
+                  method: "delete",
                   body: JSON.stringify(requestData),
                   headers: {
                     "Content-Type": "application/json"
@@ -4805,20 +4811,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 13:
+              case 14:
                 if (!(this.purpose == "tourcategory")) {
-                  _context2.next = 17;
+                  _context2.next = 18;
                   break;
                 }
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 17;
+                  _context2.next = 18;
                   break;
                 }
 
-                _context2.next = 17;
+                _context2.next = 18;
                 return fetch("/api/tour/disconnect/category", {
-                  method: "post",
+                  method: "delete",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4833,7 +4839,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 17:
+              case 18:
               case "end":
                 return _context2.stop();
             }
@@ -5050,7 +5056,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.next = 2;
                 return fetch("/api/tour/", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(this.tourItem),
                   headers: {
                     "Content-Type": "application/json"
@@ -5093,24 +5099,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                console.log("22");
+
                 if (!confirm("Вы точно хотите удалить тур?")) {
-                  _context4.next = 3;
+                  _context4.next = 4;
                   break;
                 }
 
-                _context4.next = 3;
+                _context4.next = 4;
                 return fetch("/api/tour/" + this.id, {
-                  method: "post"
+                  method: "delete"
                 }).then(function (res) {
                   return res.json();
                 }).then(function (data) {})["catch"](function (err) {
                   return console.log(err);
                 });
 
-              case 3:
+              case 4:
                 this.updateItem();
 
-              case 4:
+              case 5:
               case "end":
                 return _context4.stop();
             }
@@ -5126,7 +5134,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }()
   },
   components: {}
-});
+}); // <a :class="'tour_functions_down ' + tour_disabled_down" href="#">
+//   <figure>
+//     <img src="../../../../public/images/arrow_down.svg" alt="down" />
+//   </figure>
+// </a>
+// <a :class="'tour_functions_up ' + tour_disabled_up" href="#">
+//   <figure>
+//     <img src="../../../../public/images/arrow_up.svg" alt="up" />
+//   </figure>
+// </a>
 
 /***/ }),
 
@@ -5760,7 +5777,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _context8.next = 3;
                 return fetch("/api/driver/".concat(this.driver.id), {
-                  method: "post"
+                  method: "delete"
                 }).then(function (res) {
                   return res.json();
                 }).then(function (data) {
@@ -5840,7 +5857,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 driver = this.driver;
                 _context10.next = 3;
                 return fetch("/api/driver/", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(driver),
                   headers: {
                     "Content-Type": "application/json"
@@ -5886,7 +5903,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (this.selected.child == "Есть") car.child = 1;else car.child = 0;
                 _context11.next = 4;
                 return fetch("/api/car/", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(car),
                   headers: {
                     "Content-Type": "application/json"
@@ -5933,7 +5950,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 postphoto.id = this.car.id;
                 _context12.next = 6;
                 return fetch("/api/carphoto/back", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(postphoto),
                   headers: {
                     "Content-Type": "application/json"
@@ -5942,6 +5959,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (data) {
                   alert("\u043C\u0430\u0448\u0438\u043D\u0430 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430");
+                  window.location.href = "/home/driver/" + driver.id;
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -5975,7 +5993,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 postphoto.id = this.car.id;
                 _context13.next = 6;
                 return fetch("/api/carphoto/side", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(postphoto),
                   headers: {
                     "Content-Type": "application/json"
@@ -5984,6 +6002,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (data) {
                   alert("\u043C\u0430\u0448\u0438\u043D\u0430 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430");
+                  window.location.href = "/home/driver/" + driver.id;
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -6017,7 +6036,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 postphoto.id = this.car.id;
                 _context14.next = 6;
                 return fetch("/api/carphoto/front", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(postphoto),
                   headers: {
                     "Content-Type": "application/json"
@@ -6026,6 +6045,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (data) {
                   alert("\u043C\u0430\u0448\u0438\u043D\u0430 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430");
+                  window.location.href = "/home/driver/" + driver.id;
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -6180,6 +6200,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return this.getCeterories();
 
             case 2:
+              console.log(this.categories);
+
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -6380,6 +6403,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (res) {
                   _this2.allRoutes = res.data;
+                  console.log("Take data :" + res);
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -6388,8 +6412,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.allNameRoutes = this.allRoutes.map(function (x) {
                   return x.name;
                 });
+                console.log(this.allRoutes);
 
-              case 3:
+              case 4:
               case "end":
                 return _context3.stop();
             }
@@ -6417,6 +6442,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
+        console.log("\u0413\u0440\u0443\u043F\u043F\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0430");
+
         _this3.fetchData();
       })["catch"](function (err) {
         return console.log(err);
@@ -6486,6 +6513,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return this.getNotices();
 
             case 2:
+              console.log(this.data);
+
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -6525,7 +6555,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 _context2.next = 3;
                 return fetch("/api/notices/additem", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(newNotice),
                   headers: {
                     "Content-Type": "application/json"
@@ -7437,6 +7467,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                console.log("i work");
+
+              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -7571,14 +7604,16 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
               case 0:
                 _context6.next = 2;
                 return fetch("/api/settings/update", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(item),
                   headers: {
                     "Content-Type": "application/json"
                   }
                 }).then(function (res) {
                   return res.json();
-                }).then(function (data) {})["catch"](function (err) {
+                }).then(function (data) {
+                  console.log(item);
+                })["catch"](function (err) {
                   return console.log(err);
                 });
 
@@ -7612,6 +7647,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
     route_group_post: function route_group_post() {
       var _this4 = this;
 
+      console.log(this.data.item.name);
       fetch("/api/route_group/", {
         method: "POST",
         body: JSON.stringify({
@@ -7623,6 +7659,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
+        console.log("\u0413\u0440\u0443\u043F\u043F\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0430");
+
         _this4.fetchData();
       })["catch"](function (err) {
         return console.log(err);
@@ -8056,6 +8094,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
                 });
 
               case 2:
+                console.log(this.connectedRoutes);
+
+              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -8204,7 +8245,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
               case 0:
                 _context9.next = 2;
                 return fetch("/api/tour/upload/photo", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(this.tour),
                   headers: {
                     "Content-Type": "application/json"
@@ -8246,7 +8287,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
               case 0:
                 _context10.next = 2;
                 return fetch("/api/tour/", {
-                  method: "post",
+                  method: "put",
                   body: JSON.stringify(this.tour),
                   headers: {
                     "Content-Type": "application/json"
@@ -44605,6 +44646,10 @@ var render = function() {
       _vm._v(" "),
       _vm.title == "Маршруты"
         ? _c("div", [
+            _c("a", { staticClass: "ml-4", attrs: { href: "#" } }, [
+              _vm._v("К Спрятанным маршрутам")
+            ]),
+            _vm._v(" "),
             _c(
               "a",
               { staticClass: "ml-4", attrs: { href: "/home/routs/edit" } },
@@ -44723,7 +44768,13 @@ var render = function() {
     _c("div", { staticClass: "d-flex align-items-center row" }, [
       _c("h2", [_vm._v(_vm._s(_vm.title))]),
       _vm._v(" "),
-      _vm.title == "Водители" ? _c("div") : _vm._e()
+      _vm.title == "Водители"
+        ? _c("div", [
+            _c("a", { attrs: { href: "http://ac/home/drivers/" } }, [
+              _vm._v("К Видимым водителям")
+            ])
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _vm.data.loading
@@ -46535,7 +46586,7 @@ var render = function() {
                           return _c("div", { key: _vm.random(item) }, [
                             _c("img", {
                               attrs: {
-                                src: __webpack_require__(/*! ../../../../public/storage/images/StarGreen.svg */ "./storage/app/public/images/StarGreen.svg"),
+                                src: __webpack_require__(/*! ../../../../public/images/StarGreen.svg */ "./public/images/StarGreen.svg"),
                                 alt: "GreenStars"
                               }
                             })
@@ -46546,7 +46597,7 @@ var render = function() {
                           return _c("div", { key: _vm.random(item) }, [
                             _c("img", {
                               attrs: {
-                                src: __webpack_require__(/*! ../../../../public/storage/images/StarGray.svg */ "./storage/app/public/images/StarGray.svg"),
+                                src: __webpack_require__(/*! ../../../../public/images/StarGray.svg */ "./public/images/StarGray.svg"),
                                 alt: "GrayStars"
                               }
                             })
@@ -46747,10 +46798,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/pen.svg */ "./storage/app/public/images/pen.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/pen.svg */ "./public/images/pen.svg"), alt: "" }
       })
     ])
   },
@@ -46760,10 +46808,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/trash.svg */ "./storage/app/public/images/trash.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/trash.svg */ "./public/images/trash.svg"), alt: "" }
       })
     ])
   },
@@ -46773,10 +46818,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/save.svg */ "./storage/app/public/images/save.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/save.svg */ "./public/images/save.svg"), alt: "" }
       })
     ])
   },
@@ -46786,10 +46828,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/close.svg */ "./storage/app/public/images/close.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/close.svg */ "./public/images/close.svg"), alt: "" }
       })
     ])
   }
@@ -47123,7 +47162,7 @@ var render = function() {
             !_vm.edit
               ? _c("img", {
                   attrs: {
-                    src: __webpack_require__(/*! ../../../../public/storage/images/pen.svg */ "./storage/app/public/images/pen.svg"),
+                    src: __webpack_require__(/*! ../../../../public/images/pen.svg */ "./public/images/pen.svg"),
                     alt: "edit"
                   }
                 })
@@ -47132,7 +47171,7 @@ var render = function() {
             _vm.edit
               ? _c("img", {
                   attrs: {
-                    src: __webpack_require__(/*! ../../../../public/storage/images/close.svg */ "./storage/app/public/images/close.svg"),
+                    src: __webpack_require__(/*! ../../../../public/images/close.svg */ "./public/images/close.svg"),
                     alt: "close"
                   }
                 })
@@ -47144,7 +47183,7 @@ var render = function() {
           _vm.edit
             ? _c("img", {
                 attrs: {
-                  src: __webpack_require__(/*! ../../../../public/storage/images/save.svg */ "./storage/app/public/images/save.svg"),
+                  src: __webpack_require__(/*! ../../../../public/images/save.svg */ "./public/images/save.svg"),
                   alt: "edit"
                 },
                 on: {
@@ -47159,7 +47198,7 @@ var render = function() {
           !_vm.edit
             ? _c("img", {
                 attrs: {
-                  src: __webpack_require__(/*! ../../../../public/storage/images/trash.svg */ "./storage/app/public/images/trash.svg"),
+                  src: __webpack_require__(/*! ../../../../public/images/trash.svg */ "./public/images/trash.svg"),
                   alt: "edit"
                 },
                 on: {
@@ -47184,7 +47223,7 @@ var staticRenderFns = [
       _c("figure", [
         _c("img", {
           attrs: {
-            src: __webpack_require__(/*! ../../../../public/storage/images/bus.svg */ "./storage/app/public/images/bus.svg"),
+            src: __webpack_require__(/*! ../../../../public/images/bus.svg */ "./public/images/bus.svg"),
             alt: "bus"
           }
         })
@@ -49765,10 +49804,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/car.svg */ "./storage/app/public/images/car.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/car.svg */ "./public/images/car.svg"), alt: "" }
       })
     ])
   },
@@ -49778,10 +49814,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/photo.svg */ "./storage/app/public/images/photo.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/photo.svg */ "./public/images/photo.svg"), alt: "" }
       })
     ])
   },
@@ -49791,10 +49824,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/coins.svg */ "./storage/app/public/images/coins.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/coins.svg */ "./public/images/coins.svg"), alt: "" }
       })
     ])
   },
@@ -49804,10 +49834,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("figure", [
       _c("img", {
-        attrs: {
-          src: __webpack_require__(/*! ../../../../public/storage/images/timer.svg */ "./storage/app/public/images/timer.svg"),
-          alt: ""
-        }
+        attrs: { src: __webpack_require__(/*! ../../../../public/images/timer.svg */ "./public/images/timer.svg"), alt: "" }
       })
     ])
   }
@@ -50268,7 +50295,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Добавить группу")]
+                  [_vm._v("Добавить точку")]
                 )
               ],
               1
@@ -62722,6 +62749,28 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./public/images/StarGray.svg":
+/*!************************************!*\
+  !*** ./public/images/StarGray.svg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/StarGray.svg?e6d063f2bf468417b86fca4c365ac427";
+
+/***/ }),
+
+/***/ "./public/images/StarGreen.svg":
+/*!*************************************!*\
+  !*** ./public/images/StarGreen.svg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/StarGreen.svg?141392310152c00ce643d294e630d465";
+
+/***/ }),
+
 /***/ "./public/images/bus.svg":
 /*!*******************************!*\
   !*** ./public/images/bus.svg ***!
@@ -62730,6 +62779,94 @@ module.exports = function(module) {
 /***/ (function(module, exports) {
 
 module.exports = "/images/bus.svg?d1fdeffc6b4e061803035d5693ef0a5c";
+
+/***/ }),
+
+/***/ "./public/images/car.svg":
+/*!*******************************!*\
+  !*** ./public/images/car.svg ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/car.svg?d1a2535f5f043dc06168ee57dbdb98b8";
+
+/***/ }),
+
+/***/ "./public/images/close.svg":
+/*!*********************************!*\
+  !*** ./public/images/close.svg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/close.svg?9d242156da56e477e91de7bc481b1868";
+
+/***/ }),
+
+/***/ "./public/images/coins.svg":
+/*!*********************************!*\
+  !*** ./public/images/coins.svg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/coins.svg?1ea97309d6ed6384ce75533de5d34555";
+
+/***/ }),
+
+/***/ "./public/images/pen.svg":
+/*!*******************************!*\
+  !*** ./public/images/pen.svg ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/pen.svg?d1c5b2304eb119dd4834b92ba9b914d2";
+
+/***/ }),
+
+/***/ "./public/images/photo.svg":
+/*!*********************************!*\
+  !*** ./public/images/photo.svg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/photo.svg?5304a6e0a98eecd98579adf2df309f42";
+
+/***/ }),
+
+/***/ "./public/images/save.svg":
+/*!********************************!*\
+  !*** ./public/images/save.svg ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/save.svg?e098697c621fd800cb422a339a27fcf1";
+
+/***/ }),
+
+/***/ "./public/images/timer.svg":
+/*!*********************************!*\
+  !*** ./public/images/timer.svg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/timer.svg?f3df943e15b0b944cc28394923f1963f";
+
+/***/ }),
+
+/***/ "./public/images/trash.svg":
+/*!*********************************!*\
+  !*** ./public/images/trash.svg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/trash.svg?544611126da65299b967902b9eaec831";
 
 /***/ }),
 
@@ -65398,127 +65535,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./storage/app/public/images/StarGray.svg":
-/*!************************************************!*\
-  !*** ./storage/app/public/images/StarGray.svg ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/StarGray.svg?e6d063f2bf468417b86fca4c365ac427";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/StarGreen.svg":
-/*!*************************************************!*\
-  !*** ./storage/app/public/images/StarGreen.svg ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/StarGreen.svg?141392310152c00ce643d294e630d465";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/bus.svg":
-/*!*******************************************!*\
-  !*** ./storage/app/public/images/bus.svg ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/bus.svg?d1fdeffc6b4e061803035d5693ef0a5c";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/car.svg":
-/*!*******************************************!*\
-  !*** ./storage/app/public/images/car.svg ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/car.svg?d1a2535f5f043dc06168ee57dbdb98b8";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/close.svg":
-/*!*********************************************!*\
-  !*** ./storage/app/public/images/close.svg ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/close.svg?9d242156da56e477e91de7bc481b1868";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/coins.svg":
-/*!*********************************************!*\
-  !*** ./storage/app/public/images/coins.svg ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/coins.svg?1ea97309d6ed6384ce75533de5d34555";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/pen.svg":
-/*!*******************************************!*\
-  !*** ./storage/app/public/images/pen.svg ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/pen.svg?d1c5b2304eb119dd4834b92ba9b914d2";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/photo.svg":
-/*!*********************************************!*\
-  !*** ./storage/app/public/images/photo.svg ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/photo.svg?5304a6e0a98eecd98579adf2df309f42";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/save.svg":
-/*!********************************************!*\
-  !*** ./storage/app/public/images/save.svg ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/save.svg?e098697c621fd800cb422a339a27fcf1";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/timer.svg":
-/*!*********************************************!*\
-  !*** ./storage/app/public/images/timer.svg ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/timer.svg?f3df943e15b0b944cc28394923f1963f";
-
-/***/ }),
-
-/***/ "./storage/app/public/images/trash.svg":
-/*!*********************************************!*\
-  !*** ./storage/app/public/images/trash.svg ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/trash.svg?544611126da65299b967902b9eaec831";
 
 /***/ }),
 

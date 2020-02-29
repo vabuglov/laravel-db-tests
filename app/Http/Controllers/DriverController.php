@@ -15,8 +15,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class DriverController extends Controller
 {
     public function showAllDriversData()
-    {
-        $bigArray = array();
+    {$bigArray = array();
         $tempArray = array();
         $reviews = array();
         $routeGroup = array();
@@ -90,14 +89,14 @@ class DriverController extends Controller
 
             file_put_contents($path, $decoded);
         }
+        $driver = $request->isMethod('put') ? Driver::findOrFail($request->id)
+        : new Driver;
 
-        if (isset($request->id)) {
-            $driver = Driver::findOrFail($request->id);
-        } else {
-            $driver = new Driver;
+        $path_old_photo = '';
+
+        if ($request->isMethod('put')) {
+            $path_old_photo = $driver->photo;
         }
-
-        $path_old_photo = $driver->photo;
 
         $driver->id = $request->input('id');
         $driver->name = $request->input('name');
@@ -111,9 +110,7 @@ class DriverController extends Controller
         $car = $driver->car()->create();
         $car->carphoto()->create();
 
-        \Log::info($path_old_photo);
-
-        if ($path_old_photo && strpos($path_old_photo, "https://") !== 0) {
+        if ($path_old_photo) {
             unlink(public_path() . $path_old_photo);
         }
 

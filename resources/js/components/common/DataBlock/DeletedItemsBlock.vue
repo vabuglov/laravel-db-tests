@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center row">
       <h2>{{title}}</h2>
       <div v-if="title=='Водители'">
-        <!-- <a href="http://ac/home/drivers/">К Видимым водителям</a> -->
+        <a href="http://ac/home/drivers/">К Видимым водителям</a>
       </div>
     </div>
     <div v-if="data.loading" class="loading">
@@ -99,7 +99,7 @@ export default {
     restoreItem(id) {
       if (confirm("Вы точно хотите восстановить?")) {
         fetch(`/api/driver/restore/${id}`, {
-          method: "post"
+          method: "put"
         })
           .then(res => res.json())
           .then(data => {

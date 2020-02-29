@@ -64,9 +64,11 @@ export default {
         .then(res => res.json())
         .then(res => {
           this.allRoutes = res.data;
+          console.log("Take data :" + res);
         })
         .catch(err => console.log(err));
       this.allNameRoutes = this.allRoutes.map(x => x.name);
+      console.log(this.allRoutes);
     },
     route_group_post() {
       fetch(`/api/route_group/`, {
@@ -80,6 +82,7 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
+          console.log(`Группа создана`);
           this.fetchData();
         })
         .catch(err => console.log(err));

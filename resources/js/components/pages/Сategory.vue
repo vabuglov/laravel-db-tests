@@ -132,7 +132,7 @@
         <button
           class="btn btn-outline-primary ml-2"
           @click.prevent="connectRouteToTour"
-        >Добавить группу</button>
+        >Добавить точку</button>
       </div>
       <RouteItem
         v-bind:key="random(item)"
@@ -228,6 +228,7 @@ export default {
         .then(res => res.json())
         .then(res => (this.connectedRoutes = res))
         .catch(err => console.log(err));
+      console.log(this.connectedRoutes);
     },
     async getConnectedCategoryes() {
       await fetch(`/api/tour/category/` + this.id)
@@ -277,7 +278,7 @@ export default {
     },
     async uploadImage() {
       await fetch(`/api/tour/upload/photo`, {
-        method: "post",
+        method: "put",
         body: JSON.stringify(this.tour),
         headers: {
           "Content-Type": "application/json"
@@ -294,7 +295,7 @@ export default {
     },
     async updateTour() {
       await fetch(`/api/tour/`, {
-        method: "post",
+        method: "put",
         body: JSON.stringify(this.tour),
         headers: {
           "Content-Type": "application/json"

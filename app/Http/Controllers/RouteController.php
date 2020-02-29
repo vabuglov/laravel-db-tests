@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Route as RouteResource;
 use App\Route;
+use App\Http\Resources\Route as RouteResource;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
     public function index($count)
     {
-        $count = gettype(intval($count)) == 'integer' ? $count : 5;
+        $count = gettype(intval($count)) == 'integer' ? $count: 5;
         $route = Route::paginate($count);
         return RouteResource::collection($route);
     }
@@ -23,11 +23,8 @@ class RouteController extends Controller
 
     public function store(Request $request)
     {
-        if (isset($request->id)) {
-            $route = Route::findOrFail($request->id);
-        } else {
-            $route = new Route;
-        }
+        $route = $request->isMethod('put') ? Route::findOrFail($request->id)
+            : new Route;
 
         $route->id = $request->input('id');
         $route->name = $request->input('name');
@@ -50,7 +47,7 @@ class RouteController extends Controller
         \Log::info('DB request:');
         \Log::info($request);
 
-        $review = Route::where('name', $name)->first();
+        $review =  Route::where('name', $name)->first();
 
         \Log::info('DB review:');
         \Log::info($review);
@@ -67,7 +64,7 @@ class RouteController extends Controller
 
     public function destroy($id)
     {
-
+        
         try {
             $route = Route::findOrFail($id);
             if ($route) {
@@ -83,7 +80,7 @@ class RouteController extends Controller
             }
             return [
                 "error" => $message,
-                "status" => $status,
+                "status" => $status
             ];
         }
     }

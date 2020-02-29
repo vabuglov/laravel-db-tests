@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DReview as DReviewResource;
-use App\Http\Resources\Review as ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Http\Resources\Review as ReviewResource;
+use App\Http\Resources\DReview as DReviewResource;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
@@ -15,14 +16,12 @@ class ReviewController extends Controller
         return ReviewResource::collection($reviews);
     }
 
+
     public function store(Request $request)
     {
-        $review;
-        if (isset($request->id)) {
-            $review = Review::findOrFail($request->id);
-        } else {
-            $review = new Review;
-        }
+        \Log::info($request);
+        $review = $request->isMethod('put') ? Review::findOrFail($request->id)
+            : new Review;
 
         $review->id = $request->input('id');
         $review->author = $request->input('author');
@@ -44,7 +43,8 @@ class ReviewController extends Controller
     public function dshow($id)
     {
         $review = Review::all()->where('driver_id', $id);
-        return new DReviewResource($review);
+      //  return new ReviewResource($review);
+      return new DReviewResource($review) ;
     }
 
     public function destroy($id)
@@ -64,7 +64,7 @@ class ReviewController extends Controller
             }
             return [
                 "error" => $message,
-                "status" => $status,
+                "status" => $status
             ];
         }
     }

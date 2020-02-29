@@ -38,13 +38,12 @@ class CarphotoController extends Controller
 
         file_put_contents($path, $decoded);
 
-        if (isset($request->id)) {
-            $carphotos = Carphoto::findOrFail($request->id);
-        } else {
-            $carphotos = new Carphoto;
-        }
+        $carphotos = $request->isMethod('put') ? Carphoto::findOrFail($request->id)
+        : new Carphoto;
 
-        $path_old_photo = $carphotos->car_photo_back;
+        if ($request->isMethod('put')) {
+            $path_old_photo = $carphotos->car_photo_back;
+        }
 
         $carphotos->car_photo_back = '/' . 'images/' . 'cars/' . $file_name;
 
@@ -52,7 +51,7 @@ class CarphotoController extends Controller
 
         $carphotos->save();
 
-        if (strpos($path_old_photo, "https://") !== 0) {
+        if ($path_old_photo) {
             unlink(public_path() . $path_old_photo);
         }
 
@@ -62,6 +61,7 @@ class CarphotoController extends Controller
     {
         $exploded = explode(',', $request->photo);
         $decoded = base64_decode($exploded[1]);
+
         if (Str::contains($exploded[0], 'jpeg')) {
             $extension = 'jpg';
         } else {
@@ -74,13 +74,14 @@ class CarphotoController extends Controller
 
         file_put_contents($path, $decoded);
 
-        if (isset($request->id)) {
-            $carphotos = Carphoto::findOrFail($request->id);
-        } else {
-            $carphotos = new Carphoto;
-        }
+        $carphotos = $request->isMethod('put') ? Carphoto::findOrFail($request->id)
+        : new Carphoto;
 
-        $path_old_photo = $carphotos->car_photo_front;
+        $path_old_photo;
+
+        if ($request->isMethod('put')) {
+            $path_old_photo = $carphotos->car_photo_front;
+        }
 
         $carphotos->car_photo_front = '/' . 'images/' . 'cars/' . $file_name;
 
@@ -88,7 +89,7 @@ class CarphotoController extends Controller
 
         $carphotos->save();
 
-        if (strpos($path_old_photo, "https://") !== 0) {
+        if ($path_old_photo) {
             unlink(public_path() . $path_old_photo);
         }
 
@@ -111,13 +112,14 @@ class CarphotoController extends Controller
 
         file_put_contents($path, $decoded);
 
-        if (isset($request->id)) {
-            $carphotos = Carphoto::findOrFail($request->id);
-        } else {
-            $carphotos = new Carphoto;
-        }
+        $carphotos = $request->isMethod('put') ? Carphoto::findOrFail($request->id)
+        : new Carphoto;
 
-        $path_old_photo = $carphotos->car_photo_side;
+        $path_old_photo;
+
+        if ($request->isMethod('put')) {
+            $path_old_photo = $carphotos->car_photo_side;
+        }
 
         $carphotos->car_photo_side = '/' . 'images/' . 'cars/' . $file_name;
 
@@ -125,7 +127,7 @@ class CarphotoController extends Controller
 
         $carphotos->save();
 
-        if (strpos($path_old_photo, "https://") !== 0) {
+        if ($path_old_photo) {
             unlink(public_path() . $path_old_photo);
         }
 

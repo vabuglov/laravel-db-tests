@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Route;
 use App\RouteGroup;
+use App\Route;
+use \App\Http\Resources\RouteGroup as RouteGroupResource;
 use Illuminate\Http\Request;
 
 class RouteGroupController extends Controller
 {
     public function index()
     {
-        $routeGroup = RouteGroup::all();
-        return ["data" => $routeGroup];
+	$routeGroup = RouteGroup::all();
+        return ["data" =>  $routeGroup];
     }
 
     public function store(Request $request)
     {
-
-        if (isset($request->id)) {
-            $routeGroup = RouteGroup::findOrFail($request->id);
-        } else {
-            $routeGroup = new RouteGroup;
-        }
-
+        $routeGroup = $request->isMethod('put') ? RouteGroup::findOrFail($request->id)
+        : new RouteGroup;
+        
         $routeGroup->id = $request->input('id');
         $routeGroup->name = $request->input('name');
         $routeGroup->save();
@@ -36,7 +33,7 @@ class RouteGroupController extends Controller
         $routeGroup = RouteGroup::findOrFail($request->input('route_group_id'));
 
         $route = Route::where('name', ($request->input('route_name')))->first();
-
+        
         $routeGroup->routes()->save($route);
 
         return ["data" => $routeGroup];
@@ -51,10 +48,12 @@ class RouteGroupController extends Controller
     }
 
     public function show_connected($id)
-    {
+    {       
         $routeGroup = RouteGroup::find($id)->routes()->get();
         return $routeGroup;
     }
+
+
 
     public function show($id)
     {
@@ -65,16 +64,11 @@ class RouteGroupController extends Controller
 
     public function destroy($id)
     {
-        $routeGroup = RouteGroup::findOrFail($id);
-        \Log::info($routeGroup);
-        \Log::info($id);
-
-        if ($routeGroup) {
-            $routeGroup->delete();
-        }
-
         try {
-
+            $routeGroup = RouteGroup::findOrFail($id);
+            if ($routeGroup) {
+                $routeGroup->delete();
+            }
             return ["data" => $routeGroup];
         } catch (\Exception $e) {
             $status = 400;
@@ -85,7 +79,7 @@ class RouteGroupController extends Controller
             }
             return [
                 "error" => $message,
-                "status" => $status,
+                "status" => $status
             ];
         }
     }

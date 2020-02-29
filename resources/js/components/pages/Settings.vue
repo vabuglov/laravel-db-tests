@@ -23,7 +23,7 @@
       <div class="settings_planning d-flex">
         <div class="settings_planning-icons mb-5">
           <figure>
-            <img src="../../../../public/storage/images/car.svg" alt />
+            <img src="../../../../public/images/car.svg" alt />
           </figure>
           <div v-if="!iconsEdit.CarEdit" class="mr-2">{{pageContent.planning_car.text}}</div>
           <input
@@ -52,7 +52,7 @@
         </div>
         <div class="settings_planning-icons mb-5">
           <figure>
-            <img src="../../../../public/storage/images/photo.svg" alt />
+            <img src="../../../../public/images/photo.svg" alt />
           </figure>
           <div v-if="!iconsEdit.PhotoEdit" class="mr-2">{{pageContent.planning_photo.text}}</div>
           <input
@@ -81,7 +81,7 @@
         </div>
         <div class="settings_planning-icons mb-5">
           <figure>
-            <img src="../../../../public/storage/images/coins.svg" alt />
+            <img src="../../../../public/images/coins.svg" alt />
           </figure>
           <div v-if="!iconsEdit.CoinsEdit" class="mr-2">{{pageContent.planning_coins.text}}</div>
           <input
@@ -110,7 +110,7 @@
         </div>
         <div class="settings_planning-icons mb-5">
           <figure>
-            <img src="../../../../public/storage/images/timer.svg" alt />
+            <img src="../../../../public/images/timer.svg" alt />
           </figure>
           <div v-if="!iconsEdit.TimeEdit" class="mr-2">{{pageContent.planning_time.text}}</div>
           <input
@@ -527,7 +527,9 @@ export default {
     await this.getContent();
   },
   methods: {
-    async clearPhotos() {},
+    async clearPhotos() {
+      console.log("i work");
+    },
     async fetchData() {
       await fetch("/api/route_group/groups")
         .then(res => res.json())
@@ -559,14 +561,16 @@ export default {
     },
     async updateSetting(item) {
       await fetch(`/api/settings/update`, {
-        method: "post",
+        method: "put",
         body: JSON.stringify(item),
         headers: {
           "Content-Type": "application/json"
         }
       })
         .then(res => res.json())
-        .then(data => {})
+        .then(data => {
+          console.log(item);
+        })
         .catch(err => console.log(err));
 
       for (let key in this.iconsEdit) {
@@ -581,6 +585,7 @@ export default {
       return Math.random() * Math.random();
     },
     route_group_post() {
+      console.log(this.data.item.name);
       fetch(`/api/route_group/`, {
         method: "POST",
         body: JSON.stringify({
@@ -592,6 +597,7 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
+          console.log(`Группа создана`);
           this.fetchData();
         })
         .catch(err => console.log(err));

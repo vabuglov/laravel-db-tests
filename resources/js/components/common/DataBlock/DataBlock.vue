@@ -6,7 +6,7 @@
         <a class="ml-2" href="/home/drivers/deleted">К Спрятанным водителям</a>
       </div>
       <div v-if="title=='Маршруты'">
-        <!-- <a class="ml-4" href="#">К Спрятанным маршрутам</a> -->
+        <a class="ml-4" href="#">К Спрятанным маршрутам</a>
         <a class="ml-4" href="/home/routs/edit">Создать новую группу точек</a>
       </div>
     </div>
@@ -128,7 +128,7 @@ export default {
     deleteItem(id) {
       if (confirm("Вы точно хотите спрятать?")) {
         fetch(`/api/${this.path.slice(0, -1)}/${id}`, {
-          method: "post"
+          method: "delete"
         })
           .then(res => res.json())
           .then(data => {
@@ -141,7 +141,7 @@ export default {
     destroyItem(id) {
       if (confirm("Вы точно хотите удалить?")) {
         fetch(`/api/${this.path.slice(0, -1)}/delete/${id}`, {
-          method: "post"
+          method: "delete"
         })
           .then(res => res.json())
           .then(data => {
@@ -154,7 +154,7 @@ export default {
     deleteRoute(id) {
       if (confirm("Вы точно хотите удалить точку?")) {
         fetch(`/api/route/` + id, {
-          method: "post"
+          method: "delete"
         })
           .then(res => res.json())
           .then(data => {

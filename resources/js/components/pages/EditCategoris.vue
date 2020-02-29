@@ -29,6 +29,7 @@ export default {
   },
   async created() {
     await this.getCeterories();
+    console.log(this.categories);
   },
   methods: {
     async getCeterories() {
