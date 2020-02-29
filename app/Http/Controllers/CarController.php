@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Car;
 use App\Carphoto;
 use App\Http\Resources\Car as CarResource;
+use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
@@ -18,8 +18,8 @@ class CarController extends Controller
     public function store(Request $request)
     {
         \Log::info($request);
-        $car = $request->isMethod('put') ? Car::findOrFail($request->id)
-            : new Car;
+        $car = $request->isMethod("post") ? Car::findOrFail($request->id)
+        : new Car;
 
         $car->id = $request->input('id');
         $car->name = $request->input('name');
@@ -62,7 +62,7 @@ class CarController extends Controller
             }
             return [
                 "error" => $message,
-                "status" => $status
+                "status" => $status,
             ];
         }
     }

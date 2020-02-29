@@ -527,9 +527,7 @@ export default {
     await this.getContent();
   },
   methods: {
-    async clearPhotos() {
-      console.log("i work");
-    },
+    async clearPhotos() {},
     async fetchData() {
       await fetch("/api/route_group/groups")
         .then(res => res.json())
@@ -561,16 +559,14 @@ export default {
     },
     async updateSetting(item) {
       await fetch(`/api/settings/update`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(item),
         headers: {
           "Content-Type": "application/json"
         }
       })
         .then(res => res.json())
-        .then(data => {
-          console.log(item);
-        })
+        .then(data => {})
         .catch(err => console.log(err));
 
       for (let key in this.iconsEdit) {
@@ -585,7 +581,6 @@ export default {
       return Math.random() * Math.random();
     },
     route_group_post() {
-      console.log(this.data.item.name);
       fetch(`/api/route_group/`, {
         method: "POST",
         body: JSON.stringify({
@@ -597,7 +592,6 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(`Группа создана`);
           this.fetchData();
         })
         .catch(err => console.log(err));

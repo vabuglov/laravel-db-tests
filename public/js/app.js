@@ -2269,7 +2269,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите спрятать?")) {
         fetch("/api/".concat(this.path.slice(0, -1), "/").concat(id), {
-          method: "delete"
+          method: "post"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -2286,7 +2286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите удалить?")) {
         fetch("/api/".concat(this.path.slice(0, -1), "/delete/").concat(id), {
-          method: "delete"
+          method: "post"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -2303,7 +2303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите удалить точку?")) {
         fetch("/api/route/" + id, {
-          method: "delete"
+          method: "post"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -2499,7 +2499,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (confirm("Вы точно хотите восстановить?")) {
         fetch("/api/driver/restore/".concat(id), {
-          method: "put"
+          method: "post"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -3623,7 +3623,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return fetch(this.urlupdate, {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -3713,8 +3713,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        console.log("\u0413\u0440\u0443\u043F\u043F\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0430");
-
         _this.fetchData();
       })["catch"](function (err) {
         return console.log(err);
@@ -3918,7 +3916,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return fetch("/api/notices/updateitem", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(this.orderdData),
                   headers: {
                     "Content-Type": "application/json"
@@ -3962,7 +3960,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.next = 2;
                 return fetch("/api/notices/deleteitem", {
-                  method: "delete",
+                  method: "post",
                   body: JSON.stringify(this.orderdData),
                   headers: {
                     "Content-Type": "application/json"
@@ -4247,7 +4245,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
 
                 _context3.next = 4;
                 return fetch("/api/review/", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4295,7 +4293,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
 
                 _context4.next = 3;
                 return fetch("/api/review/".concat(this.id), {
-                  method: "delete"
+                  method: "post"
                 }).then(function (res) {
                   return res.json();
                 }).then(function (data) {
@@ -4455,18 +4453,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("Front id :" + this.id);
-                _context2.next = 3;
+                _context2.next = 2;
                 return fetch("/api/route_group/show_connected/" + this.id).then(function (res) {
                   return res.json();
                 }).then(function (res) {
                   _this.routes = res;
-                  console.log("Take data :" + res);
                 })["catch"](function (err) {
                   return console.log(err);
                 });
 
-              case 3:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -4495,7 +4491,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 if (confirm("Вы точно хотите удалить?")) {
                   fetch("/api/route_group/" + this.id, {
-                    method: "delete"
+                    method: "post"
                   }).then(function (res) {
                     return res.json();
                   }).then(function (data) {
@@ -4614,7 +4610,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (confirm("Вы точно хотите удалить точку?")) {
         fetch("/api/route/" + id, {
-          method: "delete"
+          method: "post"
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -4721,21 +4717,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log(this.purpose);
-
                 if (!(this.purpose == "routegroups")) {
-                  _context2.next = 5;
+                  _context2.next = 4;
                   break;
                 }
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 5;
+                  _context2.next = 4;
                   break;
                 }
 
-                _context2.next = 5;
+                _context2.next = 4;
                 return fetch("/api/disconnect", {
-                  method: "delete",
+                  method: "post",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4750,20 +4744,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 5:
+              case 4:
                 if (!(this.purpose == "driverrouts")) {
-                  _context2.next = 9;
+                  _context2.next = 8;
                   break;
                 }
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 9;
+                  _context2.next = 8;
                   break;
                 }
 
-                _context2.next = 9;
+                _context2.next = 8;
                 return fetch("/api/driver/rg/disconnect", {
-                  method: "delete",
+                  method: "post",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4778,9 +4772,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 9:
+              case 8:
                 if (!(this.purpose == "tourroutes")) {
-                  _context2.next = 14;
+                  _context2.next = 13;
                   break;
                 }
 
@@ -4790,13 +4784,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 14;
+                  _context2.next = 13;
                   break;
                 }
 
-                _context2.next = 14;
+                _context2.next = 13;
                 return fetch("/api/tour/disconnect/route", {
-                  method: "delete",
+                  method: "post",
                   body: JSON.stringify(requestData),
                   headers: {
                     "Content-Type": "application/json"
@@ -4811,20 +4805,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 14:
+              case 13:
                 if (!(this.purpose == "tourcategory")) {
-                  _context2.next = 18;
+                  _context2.next = 17;
                   break;
                 }
 
                 if (!confirm("Вы точно хотите отсоеденить?")) {
-                  _context2.next = 18;
+                  _context2.next = 17;
                   break;
                 }
 
-                _context2.next = 18;
+                _context2.next = 17;
                 return fetch("/api/tour/disconnect/category", {
-                  method: "delete",
+                  method: "post",
                   body: JSON.stringify(this.item),
                   headers: {
                     "Content-Type": "application/json"
@@ -4839,7 +4833,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return console.log(err);
                 });
 
-              case 18:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -5056,7 +5050,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.next = 2;
                 return fetch("/api/tour/", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(this.tourItem),
                   headers: {
                     "Content-Type": "application/json"
@@ -5099,26 +5093,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                console.log("22");
-
                 if (!confirm("Вы точно хотите удалить тур?")) {
-                  _context4.next = 4;
+                  _context4.next = 3;
                   break;
                 }
 
-                _context4.next = 4;
+                _context4.next = 3;
                 return fetch("/api/tour/" + this.id, {
-                  method: "delete"
+                  method: "post"
                 }).then(function (res) {
                   return res.json();
                 }).then(function (data) {})["catch"](function (err) {
                   return console.log(err);
                 });
 
-              case 4:
+              case 3:
                 this.updateItem();
 
-              case 5:
+              case 4:
               case "end":
                 return _context4.stop();
             }
@@ -5134,16 +5126,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }()
   },
   components: {}
-}); // <a :class="'tour_functions_down ' + tour_disabled_down" href="#">
-//   <figure>
-//     <img src="../../../../public/images/arrow_down.svg" alt="down" />
-//   </figure>
-// </a>
-// <a :class="'tour_functions_up ' + tour_disabled_up" href="#">
-//   <figure>
-//     <img src="../../../../public/images/arrow_up.svg" alt="up" />
-//   </figure>
-// </a>
+});
 
 /***/ }),
 
@@ -5777,7 +5760,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _context8.next = 3;
                 return fetch("/api/driver/".concat(this.driver.id), {
-                  method: "delete"
+                  method: "post"
                 }).then(function (res) {
                   return res.json();
                 }).then(function (data) {
@@ -5857,7 +5840,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 driver = this.driver;
                 _context10.next = 3;
                 return fetch("/api/driver/", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(driver),
                   headers: {
                     "Content-Type": "application/json"
@@ -5903,7 +5886,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (this.selected.child == "Есть") car.child = 1;else car.child = 0;
                 _context11.next = 4;
                 return fetch("/api/car/", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(car),
                   headers: {
                     "Content-Type": "application/json"
@@ -5950,7 +5933,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 postphoto.id = this.car.id;
                 _context12.next = 6;
                 return fetch("/api/carphoto/back", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(postphoto),
                   headers: {
                     "Content-Type": "application/json"
@@ -5959,7 +5942,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (data) {
                   alert("\u043C\u0430\u0448\u0438\u043D\u0430 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430");
-                  window.location.href = "/home/driver/" + driver.id;
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -5993,7 +5975,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 postphoto.id = this.car.id;
                 _context13.next = 6;
                 return fetch("/api/carphoto/side", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(postphoto),
                   headers: {
                     "Content-Type": "application/json"
@@ -6002,7 +5984,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (data) {
                   alert("\u043C\u0430\u0448\u0438\u043D\u0430 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430");
-                  window.location.href = "/home/driver/" + driver.id;
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -6036,7 +6017,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 postphoto.id = this.car.id;
                 _context14.next = 6;
                 return fetch("/api/carphoto/front", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(postphoto),
                   headers: {
                     "Content-Type": "application/json"
@@ -6045,7 +6026,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (data) {
                   alert("\u043C\u0430\u0448\u0438\u043D\u0430 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430");
-                  window.location.href = "/home/driver/" + driver.id;
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -6200,9 +6180,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return this.getCeterories();
 
             case 2:
-              console.log(this.categories);
-
-            case 3:
             case "end":
               return _context.stop();
           }
@@ -6403,7 +6380,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return res.json();
                 }).then(function (res) {
                   _this2.allRoutes = res.data;
-                  console.log("Take data :" + res);
                 })["catch"](function (err) {
                   return console.log(err);
                 });
@@ -6412,9 +6388,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.allNameRoutes = this.allRoutes.map(function (x) {
                   return x.name;
                 });
-                console.log(this.allRoutes);
 
-              case 4:
+              case 3:
               case "end":
                 return _context3.stop();
             }
@@ -6442,8 +6417,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        console.log("\u0413\u0440\u0443\u043F\u043F\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0430");
-
         _this3.fetchData();
       })["catch"](function (err) {
         return console.log(err);
@@ -6513,9 +6486,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return this.getNotices();
 
             case 2:
-              console.log(this.data);
-
-            case 3:
             case "end":
               return _context.stop();
           }
@@ -6555,7 +6525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
                 _context2.next = 3;
                 return fetch("/api/notices/additem", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(newNotice),
                   headers: {
                     "Content-Type": "application/json"
@@ -7467,9 +7437,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("i work");
-
-              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -7604,16 +7571,14 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
               case 0:
                 _context6.next = 2;
                 return fetch("/api/settings/update", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(item),
                   headers: {
                     "Content-Type": "application/json"
                   }
                 }).then(function (res) {
                   return res.json();
-                }).then(function (data) {
-                  console.log(item);
-                })["catch"](function (err) {
+                }).then(function (data) {})["catch"](function (err) {
                   return console.log(err);
                 });
 
@@ -7647,7 +7612,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
     route_group_post: function route_group_post() {
       var _this4 = this;
 
-      console.log(this.data.item.name);
       fetch("/api/route_group/", {
         method: "POST",
         body: JSON.stringify({
@@ -7659,8 +7623,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        console.log("\u0413\u0440\u0443\u043F\u043F\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0430");
-
         _this4.fetchData();
       })["catch"](function (err) {
         return console.log(err);
@@ -8094,9 +8056,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
                 });
 
               case 2:
-                console.log(this.connectedRoutes);
-
-              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -8245,7 +8204,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
               case 0:
                 _context9.next = 2;
                 return fetch("/api/tour/upload/photo", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(this.tour),
                   headers: {
                     "Content-Type": "application/json"
@@ -8287,7 +8246,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_textarea_autosize__WEBPACK_IM
               case 0:
                 _context10.next = 2;
                 return fetch("/api/tour/", {
-                  method: "put",
+                  method: "post",
                   body: JSON.stringify(this.tour),
                   headers: {
                     "Content-Type": "application/json"
@@ -44646,10 +44605,6 @@ var render = function() {
       _vm._v(" "),
       _vm.title == "Маршруты"
         ? _c("div", [
-            _c("a", { staticClass: "ml-4", attrs: { href: "#" } }, [
-              _vm._v("К Спрятанным маршрутам")
-            ]),
-            _vm._v(" "),
             _c(
               "a",
               { staticClass: "ml-4", attrs: { href: "/home/routs/edit" } },
@@ -44768,13 +44723,7 @@ var render = function() {
     _c("div", { staticClass: "d-flex align-items-center row" }, [
       _c("h2", [_vm._v(_vm._s(_vm.title))]),
       _vm._v(" "),
-      _vm.title == "Водители"
-        ? _c("div", [
-            _c("a", { attrs: { href: "http://ac/home/drivers/" } }, [
-              _vm._v("К Видимым водителям")
-            ])
-          ])
-        : _vm._e()
+      _vm.title == "Водители" ? _c("div") : _vm._e()
     ]),
     _vm._v(" "),
     _vm.data.loading
@@ -50319,7 +50268,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Добавить точку")]
+                  [_vm._v("Добавить группу")]
                 )
               ],
               1

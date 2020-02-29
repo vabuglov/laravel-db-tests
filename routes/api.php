@@ -21,32 +21,37 @@ Route::group(['prefix' => 'driver'], function () {
     Route::get('/onlyTrashed/{count}', $controller . 'showOT');
     Route::get('/rg/show_connected/{driver_id}', $controller . 'show_connected');
     Route::get('/car/get_car/{id}', $controller . 'get_car');
-    Route::put('/restore/{id}', $controller . 'restore');
+    Route::post('/restore/{id}', $controller . 'restore'); //put
     Route::post('/', $controller . 'store');
     Route::post('/rg/connect/{driver_id}/{rg_id}', $controller . 'addRG');
-    Route::put('/', $controller . 'store');
-    Route::delete('/delete/{id}', $controller . 'destroy');
-    Route::delete('/rg/disconnect', $controller . 'disconnect');
-    Route::delete('/{id}', $controller . 'delete');
+    Route::post('/', $controller . 'store'); //put
+
+    Route::post('/delete/{id}', $controller . 'destroy'); //delete
+    Route::post('/rg/disconnect', $controller . 'disconnect'); //delete
+    Route::post('/{id}', $controller . 'delete'); //delete
+
 });
 
 Route::group(['prefix' => 'car'], function () {
     $controller = "CarController@";
     Route::get('/{id}', $controller . 'show');
     Route::post('/', $controller . 'store');
-    Route::put('/', $controller . 'store');
-    Route::delete('/{id}', $controller . 'destroy');
+    Route::post('/', $controller . 'store'); //put
+
+    Route::post('/{id}', $controller . 'destroy'); //delete
+
 });
 
 Route::group(['prefix' => 'carphoto'], function () {
     $controller = "CarphotoController@";
     Route::get('/{id}', $controller . 'show');
     Route::post('/', $controller . 'store');
-    Route::put('/', $controller . 'store');
-    Route::put('/back', $controller . 'postBackPhoto');
-    Route::put('/front', $controller . 'postFrontPhoto');
-    Route::put('/side', $controller . 'postSidePhoto');
-    Route::delete('/{id}', $controller . 'destroy');
+    Route::post('/', $controller . 'store'); //put
+    Route::post('/back', $controller . 'postBackPhoto'); //put
+    Route::post('/front', $controller . 'postFrontPhoto'); //put
+    Route::post('/side', $controller . 'postSidePhoto'); //put
+    Route::post('/{id}', $controller . 'destroy'); //delete
+
 });
 
 Route::group(['prefix' => 'review'], function () {
@@ -54,8 +59,9 @@ Route::group(['prefix' => 'review'], function () {
     Route::get('/driver/{id}', $controller . 'dshow');
     Route::get('/{id}', $controller . 'show');
     Route::post('/', $controller . 'store');
-    Route::put('/', $controller . 'store');
-    Route::delete('/{id}', $controller . 'destroy');
+    Route::post('/', $controller . 'store'); //put
+    Route::post('/{id}', $controller . 'destroy'); //delete
+
 });
 
 Route::group(['prefix' => 'route'], function () {
@@ -65,8 +71,9 @@ Route::group(['prefix' => 'route'], function () {
     Route::get('/wrg/{id}', $controller . 'showRG');
     Route::get('/name/{name}', $controller . 'show_name');
     Route::post('/', $controller . 'store');
-    Route::put('/', $controller . 'store');
-    Route::delete('/{id}', $controller . 'destroy');
+    Route::post('/', $controller . 'store'); //put
+    Route::post('/{id}', $controller . 'destroy'); //delete
+
 });
 
 Route::group(['prefix' => 'route_group'], function () {
@@ -76,16 +83,17 @@ Route::group(['prefix' => 'route_group'], function () {
     Route::get('/show_connected/{id}', $controller . 'show_connected');
     Route::post('/connect', $controller . 'connect');
     Route::post('/', $controller . 'store');
-    Route::put('/', $controller . 'store');
-    Route::delete('/{id}', $controller . 'destroy');
+    Route::post('/', $controller . 'store'); //put
+    Route::post('/{id}', $controller . 'destroy'); //delete
 
 });
 
 Route::group(['prefix' => 'routes_rout_group'], function () {
     $controller = "RoutesRouteGroupController@";
     Route::post('/', $controller . 'store');
-    Route::put('/', $controller . 'store');
-    Route::delete('/{id}', $controller . 'destroy');
+    Route::post('/', $controller . 'store'); //put
+    Route::post('/{id}', $controller . 'destroy'); //delete
+
 });
 
 Route::group(['prefix' => 'tour'], function () {
@@ -97,11 +105,13 @@ Route::group(['prefix' => 'tour'], function () {
     Route::post('/connect/category', $controller . 'connect_category');
     Route::post('/', $controller . 'store');
     Route::post('/connect/route', $controller . 'connect_route_to_tour');
-    Route::put('/', $controller . 'store');
-    Route::put('/upload/photo', $controller . 'postphoto');
-    Route::delete('/{id}', $controller . 'destroy');
-    Route::delete('/disconnect/category', $controller . 'disconnet_category');
-    Route::delete('/disconnect/route', $controller . 'disconnet_route');
+    Route::post('/', $controller . 'store'); //put
+    Route::post('/upload/photo', $controller . 'postphoto'); //put
+
+    Route::post('/{id}', $controller . 'destroy'); //delete
+    Route::post('/disconnect/category', $controller . 'disconnet_category'); //delete
+
+    Route::post('/disconnect/route', $controller . 'disconnet_route'); //delete
 
 });
 
@@ -114,25 +124,26 @@ Route::group(['prefix' => 'category'], function () {
     $controller = "CategoryController@";
     Route::get('/all', $controller . 'index');
     Route::get('/getTours/{id}', $controller . 'show_tours');
-    Route::put('/update', $controller . 'update');
+    Route::post('/update', $controller . 'update'); //put
+
 });
 
 Route::group(['prefix' => 'notices'], function () {
     $controller = "NoticesController@";
     Route::get('/get', $controller . 'index');
     Route::get('/getall', $controller . 'getAll');
-    Route::put('/additem', $controller . 'addItem');
-    Route::put('/updateitem', $controller . 'updateItem');
-    Route::delete('/deleteitem', $controller . 'deleteItem');
+    Route::post('/additem', $controller . 'addItem'); //put
+    Route::post('/updateitem', $controller . 'updateItem'); //put
+    Route::post('/deleteitem', $controller . 'deleteItem'); //delete
+
 });
 
-Route::delete('/disconnect', 'RouteGroupController@disconnect');
+Route::post('/disconnect', 'RouteGroupController@disconnect'); //delete
 Route::get('/alltour', 'TourController@all');
 
 Route::group(['prefix' => 'settings'], function () {
     $controller = "AltaySettingsController@";
     Route::get('/all', $controller . 'index');
     Route::get('/deletephotos', $controller . 'deletephotos');
-    Route::put('/update', $controller . 'update');
-
+    Route::post('/update', $controller . 'update'); //put
 });

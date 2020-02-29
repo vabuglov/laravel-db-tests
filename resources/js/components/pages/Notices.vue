@@ -26,7 +26,6 @@ export default {
   props: {},
   async created() {
     await this.getNotices();
-    console.log(this.data);
   },
   methods: {
     async addNotice() {
@@ -43,7 +42,7 @@ export default {
         status: "ОБРАБОТКА"
       };
       await fetch(`/api/notices/additem`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(newNotice),
         headers: {
           "Content-Type": "application/json"

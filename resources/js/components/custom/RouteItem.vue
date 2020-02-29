@@ -39,11 +39,10 @@ export default {
   },
   methods: {
     async disconnect() {
-      console.log(this.purpose);
       if (this.purpose == "routegroups") {
         if (confirm("Вы точно хотите отсоеденить?")) {
           await fetch(`/api/disconnect`, {
-            method: "delete",
+            method: "post",
             body: JSON.stringify(this.item),
             headers: {
               "Content-Type": "application/json"
@@ -60,7 +59,7 @@ export default {
       if (this.purpose == "driverrouts") {
         if (confirm("Вы точно хотите отсоеденить?")) {
           await fetch(`/api/driver/rg/disconnect`, {
-            method: "delete",
+            method: "post",
             body: JSON.stringify(this.item),
             headers: {
               "Content-Type": "application/json"
@@ -81,7 +80,7 @@ export default {
         };
         if (confirm("Вы точно хотите отсоеденить?")) {
           await fetch(`/api/tour/disconnect/route`, {
-            method: "delete",
+            method: "post",
             body: JSON.stringify(requestData),
             headers: {
               "Content-Type": "application/json"
@@ -98,7 +97,7 @@ export default {
       if (this.purpose == "tourcategory") {
         if (confirm("Вы точно хотите отсоеденить?")) {
           await fetch(`/api/tour/disconnect/category`, {
-            method: "delete",
+            method: "post",
             body: JSON.stringify(this.item),
             headers: {
               "Content-Type": "application/json"

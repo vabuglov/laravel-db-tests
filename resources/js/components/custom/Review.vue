@@ -141,7 +141,7 @@ export default {
         this.item.rating < 6
       ) {
         await fetch(`/api/review/`, {
-          method: "put",
+          method: "post",
           body: JSON.stringify(this.item),
           headers: {
             "Content-Type": "application/json"
@@ -159,7 +159,7 @@ export default {
     async delete_review() {
       if (confirm("Вы точно хотите удалить отзыв?")) {
         await fetch(`/api/review/${this.id}`, {
-          method: "delete"
+          method: "post"
         })
           .then(res => res.json())
           .then(data => {

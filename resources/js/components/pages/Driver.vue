@@ -365,7 +365,7 @@ export default {
     async deleteDriver() {
       if (confirm("Вы точно хотите удалить?")) {
         await fetch(`/api/driver/${this.driver.id}`, {
-          method: "delete"
+          method: "post"
         })
           .then(res => res.json())
           .then(data => {
@@ -394,7 +394,7 @@ export default {
     async updateDriver() {
       let driver = this.driver;
       await fetch(`/api/driver/`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(driver),
         headers: {
           "Content-Type": "application/json"
@@ -413,7 +413,7 @@ export default {
       if (this.selected.child == "Есть") car.child = 1;
       else car.child = 0;
       await fetch(`/api/car/`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(car),
         headers: {
           "Content-Type": "application/json"
@@ -433,7 +433,7 @@ export default {
       postphoto.photo = carphotos.car_photo_back;
       postphoto.id = this.car.id;
       await fetch(`/api/carphoto/back`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(postphoto),
         headers: {
           "Content-Type": "application/json"
@@ -442,7 +442,6 @@ export default {
         .then(res => res.json())
         .then(data => {
           alert(`машина обновлена`);
-          window.location.href = "/home/driver/" + driver.id;
         })
         .catch(err => console.log(err));
     },
@@ -452,7 +451,7 @@ export default {
       postphoto.photo = carphotos.car_photo_side;
       postphoto.id = this.car.id;
       await fetch(`/api/carphoto/side`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(postphoto),
         headers: {
           "Content-Type": "application/json"
@@ -461,7 +460,6 @@ export default {
         .then(res => res.json())
         .then(data => {
           alert(`машина обновлена`);
-          window.location.href = "/home/driver/" + driver.id;
         })
         .catch(err => console.log(err));
     },
@@ -471,7 +469,7 @@ export default {
       postphoto.photo = carphotos.car_photo_front;
       postphoto.id = this.car.id;
       await fetch(`/api/carphoto/front`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(postphoto),
         headers: {
           "Content-Type": "application/json"
@@ -480,7 +478,6 @@ export default {
         .then(res => res.json())
         .then(data => {
           alert(`машина обновлена`);
-          window.location.href = "/home/driver/" + driver.id;
         })
         .catch(err => console.log(err));
     },

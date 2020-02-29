@@ -85,7 +85,7 @@ export default {
     },
     async updateName() {
       await fetch(`/api/tour/`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(this.tourItem),
         headers: {
           "Content-Type": "application/json"
@@ -105,10 +105,9 @@ export default {
       this.edit = !this.edit;
     },
     async deleteItem() {
-      console.log("22");
       if (confirm("Вы точно хотите удалить тур?")) {
         await fetch(`/api/tour/` + this.id, {
-          method: "delete"
+          method: "post"
         })
           .then(res => res.json())
           .then(data => {})
@@ -119,15 +118,4 @@ export default {
   },
   components: {}
 };
-
-// <a :class="'tour_functions_down ' + tour_disabled_down" href="#">
-//   <figure>
-//     <img src="../../../../public/images/arrow_down.svg" alt="down" />
-//   </figure>
-// </a>
-// <a :class="'tour_functions_up ' + tour_disabled_up" href="#">
-//   <figure>
-//     <img src="../../../../public/images/arrow_up.svg" alt="up" />
-//   </figure>
-// </a>
 </script>

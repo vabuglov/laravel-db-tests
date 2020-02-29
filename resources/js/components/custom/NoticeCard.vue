@@ -141,7 +141,7 @@ export default {
     },
     async updateItem() {
       await fetch(`/api/notices/updateitem`, {
-        method: "put",
+        method: "post",
         body: JSON.stringify(this.orderdData),
         headers: {
           "Content-Type": "application/json"
@@ -158,7 +158,7 @@ export default {
     },
     async deleteItem() {
       await fetch(`/api/notices/deleteitem`, {
-        method: "delete",
+        method: "post",
         body: JSON.stringify(this.orderdData),
         headers: {
           "Content-Type": "application/json"
